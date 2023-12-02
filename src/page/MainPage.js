@@ -3,8 +3,8 @@ import styled from "styled-components";
 import Intro from "../components/Intro";
 import Header from "../components/Header";
 import MainContainer1 from "../components/MainContainer1";
-import 모아보기사진 from "../assets/images/모아보기.svg";
-import 펼쳐보기사진 from "../assets/images/펼쳐보기.svg";
+import 모아보기사진 from "../assets/images/collect.svg";
+import 펼쳐보기사진 from "../assets/images/expand.svg";
 import MainContainer2 from "../components/MainContainer2";
 import Footer from "../components/Footer";
 

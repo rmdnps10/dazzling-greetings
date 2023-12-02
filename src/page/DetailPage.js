@@ -3,7 +3,7 @@ import DetailIntro from "../components/DetailIntro";
 import Header from "../components/Header";
 import styled from "styled-components";
 import background from "../assets/images/background.svg";
-import 김란사 from "../assets/images/김란사.png";
+import 김란사 from "../assets/images/kim.png";
 import DetailSelector from "../components/DetailSelector";
 import CaptionMessage from "../components/CaptionMessage";
 import Space from "../components/Space";
