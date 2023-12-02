@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { StarImage, WhiteText } from "./Intro";
 import starLogo from "../assets/images/starLogo.svg";
 
-function DetailIntro() {
+function DetailIntro({isShow}) {
   return (
-    <DetailIntroContianer>
+    <DetailIntroContianer isShow={isShow}>
       <StarImage src={starLogo} />
       <WhiteText>
         모국 동포들에겐 그들과 모국 땅을 사랑하고 기억하는 우리들의 기꺼운
@@ -19,8 +19,7 @@ function DetailIntro() {
 
 const DetailIntroContianer = styled.div`
   background-color: black;
-  //   display: ${(props) => (props.isShow ? "flex" : "none")};
-  display: flex;
+  display: ${(props) => (props.isShow ? "flex" : "none")};
   flex-direction: column;
   align-items: center;
   gap: 40px;

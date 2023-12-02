@@ -30,7 +30,7 @@ function LastCaptionMessage() {
           이곳에서 전국의 만세운동 소식을 담은 ‘독립신문’이 인쇄되는 등
           독집운동의 아지트로 활용되기도 하였다.
         </Text>
-        <Space height={"200px"} />
+        <Space height={"800px"} />
       </LastCaptionMessageContainer>
     </LastCaptionSection>
   );

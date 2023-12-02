@@ -8,9 +8,10 @@ import DetailSelector from "../components/DetailSelector";
 import CaptionMessage from "../components/CaptionMessage";
 import Space from "../components/Space";
 import LastCaptionMessage from "../components/LastCaptionMessage";
+import Footer from "../components/Footer";
 function DetailPage() {
   const [isShowFirstIntro, setIsShowFirstIntro] = useState(true);
-  const [isShowSelector, setIsShowSelector] = useState(false);
+  const [isShowSelector, setIsShowSelector] = useState(true);
   const [scrollState, setScrollState] = useState(0);
   const [bright, setBright] = useState({
     first: false,
@@ -28,7 +29,9 @@ function DetailPage() {
   }, []);
   const handleScroll = () => {
     const scroll = scrollRef.current.scrollTop;
+    console.log(scroll);
     const 나중추가영역 = 0;
+    setIsShowSelector(true);
     if (scroll < 나중추가영역 + 600) {
       setBright({
         first: false,
@@ -69,7 +72,7 @@ function DetailPage() {
         fourth: true,
         fifth: false,
       });
-    } else if (scroll < 나중추가영역 + 9200) {
+    } else if (scroll < 나중추가영역 + 9900) {
       setBright({
         first: false,
         second: false,
@@ -77,8 +80,11 @@ function DetailPage() {
         fourth: false,
         fifth: true,
       });
+    } else {
+      setIsShowSelector(false);
     }
   };
+  console.log(isShowSelector);
   useEffect(() => {
     // 컴포넌트가 마운트된 후에 이벤트 리스너 등록
     if (scrollRef.current) {
@@ -90,6 +96,7 @@ function DetailPage() {
       }
     };
   }, [isShowFirstIntro]);
+
   return (
     <>
       {isShowFirstIntro ? (
@@ -98,7 +105,7 @@ function DetailPage() {
         <>
           <Header />
           <Backgroundfix image={background} ref={scrollRef}>
-            <DetailSelector bright={bright} />
+            <DetailSelector bright={bright} isShow={isShowSelector} />
             <BackgroundImageStickyBox>
               <BackgroundImage src={김란사} />
               <FirstCaptionStickyBox>
@@ -141,6 +148,7 @@ function DetailPage() {
             </BackgroundImageStickyBox>
             <LastCaptionMessage />
           </Backgroundfix>
+          <Footer />
         </>
       )}
     </>

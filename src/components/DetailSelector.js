@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import starIcon from "../assets/images/starLogo.svg";
 
-function DetailSelector({ bright }) {
+function DetailSelector({ bright, isShow }) {
   return (
-    <DetailSelectorWrapper>
+    <DetailSelectorWrapper isShow={isShow}>
       <Name>
         김란사 <span>지사</span>
       </Name>
@@ -42,6 +42,7 @@ function DetailSelector({ bright }) {
 
 const DetailSelectorWrapper = styled.div`
   position: fixed;
+  display: ${(props) => (props.isShow ? "block" : "none")};
   top: 100px;
   left: 100px;
   z-index: 9999;
@@ -56,8 +57,6 @@ const StarIcon = styled.img`
   margin-left: -3px;
   height: 26px;
 `;
-
-
 
 const YearFlex = styled.div`
   display: flex;
