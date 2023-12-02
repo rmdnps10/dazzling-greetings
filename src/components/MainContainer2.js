@@ -54,6 +54,7 @@ const FlexBox = styled.div`
   width: 100%;
   flex-wrap: wrap;
   justify-content: center;
+  padding-top: 183px;
 `;
 const ImageBox = styled.div`
   width: 267px;

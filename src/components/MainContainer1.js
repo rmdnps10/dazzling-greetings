@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 // 펼쳐보기
 function MainContainer1() {
+  const sliderRef = useRef();
+  // 스크롤 이동
+  useEffect(() => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollLeft = 1000;
+    }
+  }, []);
   return (
     <>
       {" "}
-      <SliderBox>
+      <SliderBox ref={sliderRef}>
         <OverflowBox>
           <TopBox1>
             <div className="name">김란사 지사</div>
@@ -25,6 +32,12 @@ function MainContainer1() {
           <BottomBox3>
             <div className="name">안창호 지사</div>
           </BottomBox3>
+          <TopBox4>
+            <div className="name"></div>
+          </TopBox4>
+          <BottomBox4>
+            <div className="name"></div>
+          </BottomBox4>
           <TopBox4>
             <div className="name"></div>
           </TopBox4>

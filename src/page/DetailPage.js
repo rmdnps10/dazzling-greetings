@@ -12,7 +12,6 @@ import Footer from "../components/Footer";
 function DetailPage() {
   const [isShowFirstIntro, setIsShowFirstIntro] = useState(true);
   const [isShowSelector, setIsShowSelector] = useState(true);
-  const [scrollState, setScrollState] = useState(0);
   const [bright, setBright] = useState({
     first: false,
     second: false,
