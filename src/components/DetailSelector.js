@@ -1,37 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import starIcon from "../assets/images/starLogo.svg";
 
-function DetailSelector() {
+function DetailSelector({ bright }) {
   return (
     <DetailSelectorWrapper>
       <Name>
         김란사 <span>지사</span>
       </Name>
       <YearBox>
-        <FirstYearFlex>
-          <StarIcon src={starIcon} />
-          <Content>이화학당 입학 </Content>
-        </FirstYearFlex>
-        <Line />
         <YearFlex>
-          <Circle />
-          <Content>우리나라 최초의 여성 대학교수 </Content>
+          {bright.first ? <StarIcon src={starIcon} /> : <Circle />}
+          <Content isBold={bright.first}>이화학당 입학 </Content>
         </YearFlex>
         <Line />
         <YearFlex>
-          <Circle />
-          <Content>이문회 지도교수 </Content>
+          {bright.second ? <StarIcon src={starIcon} /> : <Circle />}
+          <Content isBold={bright.second}>
+            우리나라 최초의 여성 대학교수{" "}
+          </Content>
         </YearFlex>
         <Line />
         <YearFlex>
-          <Circle />
-          <Content>파이프오르간 설치 </Content>
+          {bright.third ? <StarIcon src={starIcon} /> : <Circle />}
+          <Content isBold={bright.third}>이문회 지도교수 </Content>
+        </YearFlex>
+        <Line />
+        <YearFlex>
+          {bright.fourth ? <StarIcon src={starIcon} /> : <Circle />}
+          <Content isBold={bright.fourth}>파이프오르간 설치 </Content>
         </YearFlex>{" "}
         <Line />
         <YearFlex>
-          <Circle />
-          <Content>안창호에게 보낸 편지</Content>
+          {bright.fifth ? <StarIcon src={starIcon} /> : <Circle />}
+          <Content isBold={bright.fifth}>안창호에게 보낸 편지</Content>
         </YearFlex>{" "}
       </YearBox>
     </DetailSelectorWrapper>
@@ -42,6 +44,7 @@ const DetailSelectorWrapper = styled.div`
   position: fixed;
   top: 100px;
   left: 100px;
+  z-index: 9999;
 `;
 
 const YearBox = styled.div`
@@ -54,11 +57,7 @@ const StarIcon = styled.img`
   height: 26px;
 `;
 
-const FirstYearFlex = styled.div`
-  display: flex;
-  gap: 17px;
-  cursor: pointer;
-`;
+
 
 const YearFlex = styled.div`
   display: flex;
@@ -95,7 +94,7 @@ const Content = styled.div`
   text-align: center;
   font-size: 24px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${(props) => (props.isBold ? "700" : "400")};
   line-height: normal;
 `;
 export default DetailSelector;

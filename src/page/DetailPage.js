@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DetailIntro from "../components/DetailIntro";
 import Header from "../components/Header";
 import styled from "styled-components";
@@ -7,15 +7,89 @@ import 김란사 from "../assets/images/김란사.png";
 import DetailSelector from "../components/DetailSelector";
 import CaptionMessage from "../components/CaptionMessage";
 import Space from "../components/Space";
+import LastCaptionMessage from "../components/LastCaptionMessage";
 function DetailPage() {
   const [isShowFirstIntro, setIsShowFirstIntro] = useState(true);
   const [isShowSelector, setIsShowSelector] = useState(false);
+  const [scrollState, setScrollState] = useState(0);
+  const [bright, setBright] = useState({
+    first: false,
+    second: false,
+    third: false,
+    fourth: false,
+    fifth: false,
+  });
+  const scrollRef = useRef();
   // 인트로 보여주고 음성재성되야하는데, 음성재생시작하면 스크롤 가능하게 바꿔주기 ㅇㅇ
   useEffect(() => {
     setTimeout(() => {
       setIsShowFirstIntro(false);
-    }, 300);
+    }, 3000);
   }, []);
+  const handleScroll = () => {
+    const scroll = scrollRef.current.scrollTop;
+    const 나중추가영역 = 0;
+    if (scroll < 나중추가영역 + 600) {
+      setBright({
+        first: false,
+        second: false,
+        third: false,
+        fourth: false,
+        fifth: false,
+      });
+    } else if (scroll < 나중추가영역 + 1600) {
+      setBright({
+        first: true,
+        second: false,
+        third: false,
+        fourth: false,
+        fifth: false,
+      });
+    } else if (scroll < 나중추가영역 + 3500) {
+      setBright({
+        first: false,
+        second: true,
+        third: false,
+        fourth: false,
+        fifth: false,
+      });
+    } else if (scroll < 나중추가영역 + 5400) {
+      setBright({
+        first: false,
+        second: false,
+        third: true,
+        fourth: false,
+        fifth: false,
+      });
+    } else if (scroll < 나중추가영역 + 7300) {
+      setBright({
+        first: false,
+        second: false,
+        third: false,
+        fourth: true,
+        fifth: false,
+      });
+    } else if (scroll < 나중추가영역 + 9200) {
+      setBright({
+        first: false,
+        second: false,
+        third: false,
+        fourth: false,
+        fifth: true,
+      });
+    }
+  };
+  useEffect(() => {
+    // 컴포넌트가 마운트된 후에 이벤트 리스너 등록
+    if (scrollRef.current) {
+      scrollRef.current.addEventListener("scroll", handleScroll);
+    }
+    return () => {
+      if (scrollRef.current) {
+        scrollRef.current.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, [isShowFirstIntro]);
   return (
     <>
       {isShowFirstIntro ? (
@@ -23,8 +97,8 @@ function DetailPage() {
       ) : (
         <>
           <Header />
-          <Backgroundfix image={background}>
-            <DetailSelector />
+          <Backgroundfix image={background} ref={scrollRef}>
+            <DetailSelector bright={bright} />
             <BackgroundImageStickyBox>
               <BackgroundImage src={김란사} />
               <FirstCaptionStickyBox>
@@ -65,7 +139,7 @@ function DetailPage() {
                 />
               </FourthCaptionStickyBox>
             </BackgroundImageStickyBox>
-            <LastCaptionStickyBox></LastCaptionStickyBox>
+            <LastCaptionMessage />
           </Backgroundfix>
         </>
       )}
@@ -86,7 +160,7 @@ const Backgroundfix = styled.div`
 `;
 
 const BackgroundImageStickyBox = styled.div`
-  height: 16000px;
+  height: 8500px;
 `;
 
 const BackgroundImage = styled.img`
@@ -99,19 +173,19 @@ const BackgroundImage = styled.img`
 `;
 
 const FirstCaptionStickyBox = styled.div`
-  height: 3000px;
+  height: 1500px;
 `;
 const SecondCaptionStickyBox = styled.div`
-  height: 3000px;
+  height: 1500px;
 `;
 
 const ThirdCaptionStickyBox = styled.div`
-  height: 3000px;
+  height: 1500px;
 `;
 const FourthCaptionStickyBox = styled.div`
-  height: 3000px;
+  height: 1500px;
 `;
 const LastCaptionStickyBox = styled.div`
-  height: 3000px;
+  height: 1500px;
 `;
 export default DetailPage;
