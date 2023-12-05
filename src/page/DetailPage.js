@@ -20,6 +20,7 @@ function DetailPage() {
     fifth: false,
   });
   const scrollRef = useRef();
+  const scrollRef2 = useRef();
   // 인트로 보여주고 음성재성되야하는데, 음성재생시작하면 스크롤 가능하게 바꿔주기 ㅇㅇ
   useEffect(() => {
     setTimeout(() => {
@@ -83,7 +84,13 @@ function DetailPage() {
       setIsShowSelector(false);
     }
   };
-  console.log(isShowSelector);
+  const moveScroll = (scroll) => {
+    if (scrollRef.current == null) {
+      return;
+    }
+    scrollRef.current.scrollLeft = scroll;
+  };
+
   useEffect(() => {
     // 컴포넌트가 마운트된 후에 이벤트 리스너 등록
     if (scrollRef.current) {
@@ -104,7 +111,11 @@ function DetailPage() {
         <>
           <Header />
           <Backgroundfix image={background} ref={scrollRef}>
-            <DetailSelector bright={bright} isShow={isShowSelector} />
+            <DetailSelector
+              bright={bright}
+              isShow={isShowSelector}
+              moveScroll={moveScroll}
+            />
             <BackgroundImageStickyBox>
               <BackgroundImage src={김란사} />
               <FirstCaptionStickyBox>
@@ -136,7 +147,7 @@ function DetailPage() {
                 />
               </ThirdCaptionStickyBox>
               <Space height={"500px"} />
-              <FourthCaptionStickyBox>
+              <FourthCaptionStickyBox ref={scrollRef2}>
                 <CaptionMessage
                   title={"파이프오르간 설치"}
                   content={

@@ -39,6 +39,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.23.3",
     "typescript-styled-plugin": "^0.18.3"
   }
 }

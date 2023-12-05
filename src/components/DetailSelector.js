@@ -1,37 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import starIcon from "../assets/images/starLogo.svg";
 
-function DetailSelector({ bright, isShow }) {
+function DetailSelector({ bright, isShow, moveScroll }) {
   return (
     <DetailSelectorWrapper isShow={isShow}>
       <Name>
         김란사 <span>지사</span>
       </Name>
       <YearBox>
-        <YearFlex>
+        <YearFlex
+          onClick={() => {
+            moveScroll(100);
+          }}
+        >
           {bright.first ? <StarIcon src={starIcon} /> : <Circle />}
           <Content isBold={bright.first}>이화학당 입학 </Content>
         </YearFlex>
         <Line />
-        <YearFlex>
+        <YearFlex onClick={moveScroll(100)}>
           {bright.second ? <StarIcon src={starIcon} /> : <Circle />}
           <Content isBold={bright.second}>
             우리나라 최초의 여성 대학교수{" "}
           </Content>
         </YearFlex>
         <Line />
-        <YearFlex>
+        <YearFlex onClick={moveScroll(100)}>
           {bright.third ? <StarIcon src={starIcon} /> : <Circle />}
           <Content isBold={bright.third}>이문회 지도교수 </Content>
         </YearFlex>
         <Line />
-        <YearFlex>
+        <YearFlex onClick={moveScroll(100)}>
           {bright.fourth ? <StarIcon src={starIcon} /> : <Circle />}
           <Content isBold={bright.fourth}>파이프오르간 설치 </Content>
         </YearFlex>{" "}
         <Line />
-        <YearFlex>
+        <YearFlex onClick={moveScroll(100)}>
           {bright.fifth ? <StarIcon src={starIcon} /> : <Circle />}
           <Content isBold={bright.fifth}>안창호에게 보낸 편지</Content>
         </YearFlex>{" "}
