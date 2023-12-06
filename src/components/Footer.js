@@ -5,16 +5,16 @@ import Space from "./Space";
 function Footer() {
   return (
     <FooterContainer>
-      <Space height={"58px"} />
+      <Space height={"28px"} />
       <FooterWrapper>
         <LeftSide>
           <Space height={"16px"} />
           <Text>
             ©2023 Sogang University Art&Technology. all rights reserved.
           </Text>
-          <Space height={"66px"} />
+          <Space height={"36px"} />
           <Text>t. +82 1047894288</Text>
-          <Space height={"16px"} />
+          <Space height={"5px"} />
           <Text>m. cocoma112@sogang.ac.kr</Text>
         </LeftSide>
         <RightSide>
@@ -31,7 +31,7 @@ function Footer() {
   );
 }
 const FooterContainer = styled.div`
-  height: 306px;
+  height: 206px;
   width: 100%;
   background-color: black;
 `;
@@ -46,7 +46,7 @@ const FooterWrapper = styled.div`
 const Text = styled.div`
   color: #fff;
   font-family: Inter;
-  font-size: 24px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -64,7 +64,7 @@ const Organization = styled.div`
   text-align: left;
   color: #fff;
   font-family: Inter;
-  font-size: 18px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;

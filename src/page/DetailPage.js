@@ -9,7 +9,7 @@ import CaptionMessage from "../components/CaptionMessage";
 import Space from "../components/Space";
 import LastCaptionMessage from "../components/LastCaptionMessage";
 import Footer from "../components/Footer";
-import audio from "../assets/mp3/김란사.mp3";
+import voice from "./voice.mp3";
 function DetailPage() {
   const [isShowFirstIntro, setIsShowFirstIntro] = useState(true);
   const [isShowSelector, setIsShowSelector] = useState(true);
@@ -28,6 +28,7 @@ function DetailPage() {
   useEffect(() => {
     setTimeout(() => {
       setIsShowFirstIntro(false);
+      setIsShowSelector(false);
     }, 3000);
   }, []);
   const handleScroll = () => {
@@ -108,15 +109,19 @@ function DetailPage() {
   // 푸터 영역으로 가면 Selector보이지 않게설정
   const handleScrollWindow = () => {
     const scrollY = window.scrollY;
-    if (scrollY > 100) {
+    if (scrollY > 10) {
       setIsShowSelector(false);
     } else {
       setIsShowSelector(true);
     }
   };
+
+  const onClickAudioPlay = () => {
+    const audio = new Audio(voice);
+    audio.play();
+  };
   useEffect(() => {
     window.addEventListener("scroll", handleScrollWindow);
-
     return () => {
       window.removeEventListener("scroll", handleScrollWindow);
     };
@@ -136,7 +141,11 @@ function DetailPage() {
               moveScroll={moveScroll}
             />
             <BackgroundImageStickyBox>
-              <BackgroundImage src={김란사} scrollState={scrollState} />
+              <BackgroundImage
+                src={김란사}
+                scrollState={scrollState}
+                onClick={onClickAudioPlay}
+              />
               <FirstCaptionStickyBox>
                 <Space height={"300px"} />
                 <CaptionMessage
