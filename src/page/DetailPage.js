@@ -20,8 +20,10 @@ function DetailPage() {
     fourth: false,
     fifth: false,
   });
+  const [scrollState, setScrollState] = useState();
   const scrollRef = useRef();
   const scrollRef2 = useRef();
+  console.log(scrollState);
   // 인트로 보여주고 음성재성되야하는데, 음성재생시작하면 스크롤 가능하게 바꿔주기 ㅇㅇ
   useEffect(() => {
     setTimeout(() => {
@@ -30,10 +32,10 @@ function DetailPage() {
   }, []);
   const handleScroll = () => {
     const scroll = scrollRef.current.scrollTop;
-    console.log(scroll);
     const 나중추가영역 = 200;
     setIsShowSelector(true);
     if (scroll < 나중추가영역 + 600) {
+      setScrollState(scroll);
       setBright({
         first: false,
         second: false,
@@ -92,7 +94,6 @@ function DetailPage() {
   };
 
   useEffect(() => {
-    // 컴포넌트가 마운트된 후에 이벤트 리스너 등록
     if (scrollRef.current) {
       scrollRef.current.addEventListener("scroll", handleScroll);
     }
@@ -102,7 +103,7 @@ function DetailPage() {
       }
     };
   }, [isShowFirstIntro]);
-  
+
   // 푸터 영역으로 가면 Selector보이지 않게설정
   const handleScrollWindow = () => {
     const scrollY = window.scrollY;
@@ -134,7 +135,7 @@ function DetailPage() {
               moveScroll={moveScroll}
             />
             <BackgroundImageStickyBox>
-              <BackgroundImage src={김란사} />
+              <BackgroundImage src={김란사} scrollState={scrollState} />
               <FirstCaptionStickyBox>
                 <Space height={"300px"} />
                 <CaptionMessage
@@ -204,7 +205,8 @@ const BackgroundImage = styled.img`
   top: 150px;
   left: 380px;
   width: 700px;
-  scale: 1;
+  transform: translateX(${(props) => (props.scrollState / 50) * -1 + "px"});
+  scale: ${(props) => 1 + props.scrollState / 1000};
 `;
 
 const FirstCaptionStickyBox = styled.div`

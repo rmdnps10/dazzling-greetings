@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Space from "../components/Space";
-import busan from "../assets/images/busan.svg";
 import dokrip from "../assets/images/dokrip.svg";
 import dangjin from "../assets/images/dangjin.svg";
 import yeongtak from "../assets/images/yeongtaek.svg";
