@@ -36,6 +36,7 @@ function DetailPage() {
     setIsShowSelector(true);
     if (scroll < 나중추가영역 + 600) {
       setScrollState(scroll);
+      setIsShowSelector(false);
       setBright({
         first: false,
         second: false,
@@ -205,6 +206,7 @@ const BackgroundImage = styled.img`
   top: 150px;
   left: 380px;
   width: 700px;
+  // 스크롤 영역 지정
   transform: translateX(${(props) => (props.scrollState / 50) * -1 + "px"});
   scale: ${(props) => 1 + props.scrollState / 1000};
 `;
