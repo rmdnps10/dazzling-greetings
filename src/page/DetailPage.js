@@ -10,6 +10,8 @@ import Space from "../components/Space";
 import LastCaptionMessage from "../components/LastCaptionMessage";
 import Footer from "../components/Footer";
 import voice from "./voice.mp3";
+import AOS from "aos";
+import "aos/dist/aos.css";
 function DetailPage() {
   const [isShowFirstIntro, setIsShowFirstIntro] = useState(true);
   const [isShowSelector, setIsShowSelector] = useState(true);
@@ -121,6 +123,9 @@ function DetailPage() {
     audio.play();
   };
   useEffect(() => {
+    AOS.init();
+  });
+  useEffect(() => {
     window.addEventListener("scroll", handleScrollWindow);
     return () => {
       window.removeEventListener("scroll", handleScrollWindow);
@@ -149,6 +154,7 @@ function DetailPage() {
               <FirstCaptionStickyBox>
                 <Space height={"300px"} />
                 <CaptionMessage
+                  
                   title={"이화학당 입학"}
                   content={
                     "1894년 이화학당에 입학을 요청했으나, 당시 이화학당에는 금혼 학칙이 있었기 때문에 제4대 교장인 룰루 프라이는 기혼자 김란사의 입학 요청을 거절했다. 이에 김란사는 하인이 들고 있던 등불을 입으로 불어 끄며 “우리가 캄캄하기를 이 등불 꺼진 것과 같습니다. 어머니들이 무언가 배우고 알아야 자식을 가르칠 수 있지 않겠습니까” 라고 말했고, 이에 감명받은 프라이 교장은 김란사의 입학을 허가하였다. "
@@ -216,7 +222,7 @@ const BackgroundImage = styled.img`
   left: 380px;
   width: 700px;
   // 스크롤 영역 지정
-  transform: translateX(${(props) => (props.scrollState / 50) * -1 + "px"});
+  transform: translateX(${(props) => (props.scrollState / 7) * -1 + "px"});
   scale: ${(props) => 1 + props.scrollState / 1000};
 `;
 

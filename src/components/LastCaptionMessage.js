@@ -2,7 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import starIcon from "../assets/images/starLogo.svg";
 import Space from "./Space";
+import arrowIcon from "../assets/images/arrow.svg";
+import { useNavigate } from "react-router-dom";
 function LastCaptionMessage() {
+  const navigate = useNavigate();
+  const onClickNavigate = () => {
+    navigate("/");
+  };
   return (
     <LastCaptionSection>
       <LastCaptionMessageContainer>
@@ -30,7 +36,12 @@ function LastCaptionMessage() {
           이곳에서 전국의 만세운동 소식을 담은 ‘독립신문’이 인쇄되는 등
           독집운동의 아지트로 활용되기도 하였다.
         </Text>
-        <Space height={"800px"} />
+        <Space height={"100px"} />
+        <GoHomeSection>
+          <GoHomeText onClick={onClickNavigate}>독립운동가 더보기</GoHomeText>{" "}
+          <ArrowIcon src={arrowIcon} />
+        </GoHomeSection>
+        <Space height={"100px"} />
       </LastCaptionMessageContainer>
     </LastCaptionSection>
   );
@@ -61,12 +72,31 @@ const Title = styled.div`
   line-height: normal;
 `;
 
+const ArrowIcon = styled.img`
+  width: 13px;
+`;
 const Text = styled.div`
   color: #fff;
   text-align: center;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
+  line-height: normal;
+`;
+const GoHomeSection = styled.div`
+  display: flex;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-right: 30px;
+  align-items: center;
+  gap: 7px;
+`;
+
+const GoHomeText = styled.div`
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
   line-height: normal;
 `;
 

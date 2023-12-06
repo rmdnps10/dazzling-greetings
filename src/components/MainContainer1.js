@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
+import example1 from "../assets/images/kim.png";
+import example2 from "../assets/images/gooksa.png";
 // 펼쳐보기
 function MainContainer1() {
   const sliderRef = useRef();
@@ -17,7 +19,7 @@ function MainContainer1() {
           <TopBox1>
             <div className="name">김란사 지사</div>
           </TopBox1>
-          <BottomBox1>
+          <BottomBox1 image1={example1} image2={example2}>
             <div className="name">이관술 지사</div>
           </BottomBox1>
           <TopBox2>
@@ -91,6 +93,10 @@ const TopBox4 = styled(TopBox1)``;
 const BottomBox1 = styled(TopBox1)`
   align-self: flex-end;
   position: relative;
+  background-image: url(${(props) => props.image1});
+  background-position: 50% 50%;
+  background-size: 120%;
+  transition: 1s;
   .name {
     position: absolute;
     top: -24px;
@@ -99,6 +105,11 @@ const BottomBox1 = styled(TopBox1)`
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
+  }
+  &:hover {
+    background-image: url(${(props) => props.image2});
+    background-position: 50% 50%;
+    background-size: 150%;
   }
 `;
 const BottomBox2 = styled(BottomBox1)``;
