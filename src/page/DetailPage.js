@@ -9,6 +9,7 @@ import CaptionMessage from "../components/CaptionMessage";
 import Space from "../components/Space";
 import LastCaptionMessage from "../components/LastCaptionMessage";
 import Footer from "../components/Footer";
+import audio from "../assets/mp3/김란사.mp3";
 function DetailPage() {
   const [isShowFirstIntro, setIsShowFirstIntro] = useState(true);
   const [isShowSelector, setIsShowSelector] = useState(true);
@@ -30,7 +31,7 @@ function DetailPage() {
   const handleScroll = () => {
     const scroll = scrollRef.current.scrollTop;
     console.log(scroll);
-    const 나중추가영역 = 0;
+    const 나중추가영역 = 200;
     setIsShowSelector(true);
     if (scroll < 나중추가영역 + 600) {
       setBright({
@@ -84,11 +85,10 @@ function DetailPage() {
       setIsShowSelector(false);
     }
   };
-  const moveScroll = (scroll) => {
+  const moveScroll = () => {
     if (scrollRef.current == null) {
       return;
     }
-    scrollRef.current.scrollLeft = scroll;
   };
 
   useEffect(() => {
@@ -102,6 +102,23 @@ function DetailPage() {
       }
     };
   }, [isShowFirstIntro]);
+  
+  // 푸터 영역으로 가면 Selector보이지 않게설정
+  const handleScrollWindow = () => {
+    const scrollY = window.scrollY;
+    if (scrollY > 100) {
+      setIsShowSelector(false);
+    } else {
+      setIsShowSelector(true);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScrollWindow);
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollWindow);
+    };
+  }, []); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 등록, 언마운트될 때만 해제
 
   return (
     <>
@@ -119,7 +136,7 @@ function DetailPage() {
             <BackgroundImageStickyBox>
               <BackgroundImage src={김란사} />
               <FirstCaptionStickyBox>
-                <Space height={"100px"} />
+                <Space height={"300px"} />
                 <CaptionMessage
                   title={"이화학당 입학"}
                   content={
